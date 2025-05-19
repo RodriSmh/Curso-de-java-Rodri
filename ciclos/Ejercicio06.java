@@ -4,7 +4,7 @@
  */
 package ciclos;
 import java.util.Scanner;
-public class Ejercicio6 {
+public class Ejercicio06 {
 
 	public static void main(String[] args) {
 		Scanner s=new Scanner(System.in);

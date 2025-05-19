@@ -5,7 +5,7 @@
 package ciclos;
 import java.util.Scanner;
 import java.util.Random;
-public class Ejercicio5 {
+public class Ejercicio05 {
 
 	public static void main(String[] args) {
 		Scanner s=new Scanner(System.in);
