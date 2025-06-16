@@ -19,5 +19,4 @@ public class Ejercicio02 {
 		}
 		s.close();
 	}
-
 }
