@@ -10,7 +10,7 @@ public class Ejercicio06 {
 		int transpuesta[][]=new int[9][5];
 		Matriz.llenaMatriz(matriz);
 		Matriz.imprimeMatriz(matriz);
-		int aux=0;
+//		int aux=0;
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 9; j++) {
 				
