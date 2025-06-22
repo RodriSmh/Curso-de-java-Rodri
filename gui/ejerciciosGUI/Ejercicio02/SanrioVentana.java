@@ -8,14 +8,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.SwingConstants;
+//import javax.swing.SwingConstants;
 
 public class SanrioVentana extends JFrame {
     private static final long serialVersionUID = 1L;
     private JPanel panel;
-    private String url;
+//    private String url;
     private JRadioButton Cinna, Mel, Pom, Kur;
-    private JLabel lCinna; // Declarar como variable de clase
+    private JLabel etiqueta,imagen;
+//    private JLabel lCinna; // Declarar como variable de clase
 
     public SanrioVentana() {
         this.setSize(500, 300);
@@ -29,7 +30,8 @@ public class SanrioVentana extends JFrame {
     private void componentes() {
         panel();
         colocaRadioBotones();
-        crearEtiquetaImagen(); // Crear la etiqueta de imagen aquí
+        etiqueta();
+        
     }
 
     private void panel() {
@@ -37,7 +39,11 @@ public class SanrioVentana extends JFrame {
         panel.setLayout(null);
         this.getContentPane().add(panel);
     }
-
+    private void etiqueta() {
+    	etiqueta= new JLabel("Escoje tu personaje favorito");
+    	etiqueta.setBounds(10, 10, 250, 40);
+    	panel.add(etiqueta);
+    }
     private void colocaRadioBotones() {
         Cinna = new JRadioButton("CinnamonRoll", false);
         Cinna.setBounds(10, 50, 150, 50);
@@ -61,63 +67,56 @@ public class SanrioVentana extends JFrame {
         grupo.add(Pom);
         grupo.add(Kur);
         
-        ActionListener radioListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (Mel.isSelected()) {
-                    url = urlImagen('M');
-                } else if (Pom.isSelected()) {
-                    url = urlImagen('P');
-                } else if (Kur.isSelected()) {
-                    url = urlImagen('K');
-                } else if (Cinna.isSelected()) {
-                    url = urlImagen('C');
-                }
-                actualizarImagen(); // Actualizar la imagen cuando cambia la selección
-            }
-        };
         
-        Cinna.addActionListener(radioListener);
-        Mel.addActionListener(radioListener);
-        Pom.addActionListener(radioListener);
-        Kur.addActionListener(radioListener);
+        eventoAccion();        
+    }
+    private void eventoAccion() {
+    	
+    	imagen=new JLabel();
+    	imagen.setBounds(180,50,300,200);
+    	panel.add(imagen);
+    	
+    	final ImageIcon imKuromi=new ImageIcon(getClass().getResource("/gui/ejerciciosGUI/Ejercicio02/imagenes/Kuromi.jpg"));
+    	ActionListener evento1=new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				imagen.setIcon(new ImageIcon(imKuromi.getImage().getScaledInstance(imagen.getWidth(), imagen.getHeight(),Image.SCALE_SMOOTH )));
+				
+			}
+		};
+		final ImageIcon imMelody=new ImageIcon(getClass().getResource("/gui/ejerciciosGUI/Ejercicio02/imagenes/Melody.jpg"));
+		ActionListener evento2=new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				imagen.setIcon(new ImageIcon(imMelody.getImage().getScaledInstance(imagen.getWidth(), imagen.getHeight(),Image.SCALE_SMOOTH )));
+			}
+		};
+		final ImageIcon imPom=new ImageIcon(getClass().getResource("/gui/ejerciciosGUI/Ejercicio02/imagenes/pom.jpg"));
+		ActionListener evento3=new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				imagen.setIcon(new ImageIcon(imPom.getImage().getScaledInstance(imagen.getWidth(), imagen.getHeight(),Image.SCALE_SMOOTH )));
+			}
+		};
+		final ImageIcon imCinna=new ImageIcon(getClass().getResource("/gui/ejerciciosGUI/Ejercicio02/imagenes/Cinna.jpg"));
+		ActionListener evento4=new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				imagen.setIcon(new ImageIcon(imCinna.getImage().getScaledInstance(imagen.getWidth(), imagen.getHeight(),Image.SCALE_SMOOTH )));
+			}
+		};
+		Kur.addActionListener(evento1);
+		Mel.addActionListener(evento2);
+		Pom.addActionListener(evento3);
+		Cinna.addActionListener(evento4);
+		
     }
 
-    private void crearEtiquetaImagen() {
-        // Crear la etiqueta con una imagen vacía inicialmente
-        lCinna = new JLabel(new ImageIcon(), SwingConstants.RIGHT);
-        lCinna.setBounds(180, 50, 300, 200);
-        panel.add(lCinna);
-    }
 
-    private void actualizarImagen() {
-        if (url != null && !url.isEmpty()) {
-            // Carga la imagen usando getResource() (funciona dentro de JARs)
-            ImageIcon icon = new ImageIcon(getClass().getResource(url));
-            if (icon.getImage() != null) {
-                Image img = icon.getImage().getScaledInstance(
-                    lCinna.getWidth(), 
-                    lCinna.getHeight(), 
-                    Image.SCALE_SMOOTH);
-                lCinna.setIcon(new ImageIcon(img));
-            } else {
-                System.err.println("No se pudo cargar la imagen: " + url);
-            }
-        }
-    }
 
-    private String urlImagen(char c) {
-        switch (c) {
-            case 'K':
-                return "imagenes\\Kuromi.jpg";
-            case 'M':
-                return "imagenes\\Melody.jpg";
-            case 'P':
-                return "imagenes\\pom.jpg";
-            case 'C':
-                return "imagenes\\Cinna.jpg";
-            default:
-                return "";
-        }
-    }
+    
 }
