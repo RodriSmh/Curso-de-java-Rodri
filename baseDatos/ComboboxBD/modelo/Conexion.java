@@ -1,10 +1,10 @@
-package baseDatos.bd_JTable;
+package baseDatos.ComboboxBD.modelo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class Conexion {
-	public static final String URL="jdbc:mysql://localhost:3306/tienda?autoReconnet=true&useSSL=false";
+	public static final String URL="jdbc:mysql://localhost:3306/datosPaises?autoReconnet=true&useSSL=false";
 	public static final String usuario="root";
 	public static final String contraseña="1234";
 	
@@ -18,4 +18,5 @@ public class Conexion {
 		}
 		return conexion;
 	}
+
 }
