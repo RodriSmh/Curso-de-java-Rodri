@@ -1,4 +1,4 @@
-package baseDatos.bd_JTable;
+package baseDatos.Formulario;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,8 +11,7 @@ public class Conexion {
 	public Connection getConnection() {
 		Connection conexion=null;
 		try {
-//			Class.forName("com.mysql.cj.jdbc.Driver");
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			conexion= DriverManager.getConnection(URL,usuario,contraseña);
 		}catch(Exception e) {
 			System.err.println("Error"+e);			
